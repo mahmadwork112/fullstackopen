@@ -1,0 +1,25 @@
+{
+  "notes": [
+    {
+      "id": "1",
+      "content": "HTML is easy",
+      "important": false
+    },
+    {
+      "id": "2",
+      "content": "Browser can execute only Javascript",
+      "important": false
+    },
+    {
+      "id": "3",
+      "content": "GET and POST are the most important methods of the HTTP protocol.",
+      "important": false
+    },
+    {
+      "content": "hello",
+      "important": true,
+      "id": "nR5xphP7rNg"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

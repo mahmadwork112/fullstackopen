@@ -1,0 +1,13 @@
+# Ignore node_modules in any subfolder
+**/node_modules/
+
+# Ignore build outputs
+**/dist/
+**/build/
+
+# Ignore environment variables 
+.env
+
+# Ignore MAC OS system files
+.DS_Store
+
