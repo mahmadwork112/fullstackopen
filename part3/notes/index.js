@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+
 const app = express();
 
 let notes = [
@@ -30,9 +31,11 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :body"),
 );
 
-app.get("/", (request, response) => {
-  response.send("<h1>Hello World!</h1>");
-});
+app.use(express.static("dist"));
+
+// app.get("/", (request, response) => {
+//   response.send("<h1>Hello World!</h1>");
+// });
 
 app.get("/api/notes", (request, response) => {
   response.json(notes);
