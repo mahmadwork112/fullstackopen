@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const morgan = require("morgan");
 const app = express();
 
 let notes = [
@@ -20,17 +21,14 @@ let notes = [
   },
 ];
 
-const requestLogger = (request, response, next) => {
-  console.log("Method:", request.method);
-  console.log("Path:  ", request.path);
-  console.log("Body:  ", request.body);
-  console.log("---");
-  next();
-};
-
 app.use(express.json());
 app.use(cors());
-app.use(requestLogger);
+
+morgan.token("body", (request) => JSON.stringify(request.body));
+
+app.use(
+  morgan(":method :url :status :res[content-length] - :response-time ms :body"),
+);
 
 app.get("/", (request, response) => {
   response.send("<h1>Hello World!</h1>");
