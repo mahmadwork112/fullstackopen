@@ -1,0 +1,18 @@
+GET http://localhost:3001/api/persons
+###
+GET http://localhost:3001/api/persons/3
+###
+GET localhost:3001/info
+### 
+// Deleting a specific person.
+DELETE localhost:3001/api/persons/3
+
+###
+// Adding a new entry 
+POST localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Dan Abramov",
+  "number": "12-43-234345",
+}

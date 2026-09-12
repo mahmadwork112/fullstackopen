@@ -18,3 +18,9 @@ h1 {
   padding: 10px;
   margin-bottom: 10px;
 }
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+  margin: 0;
+}

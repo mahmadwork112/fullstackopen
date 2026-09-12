@@ -1,18 +1,18 @@
 {
-  "name": "notes",
+  "name": "phonebook",
   "version": "1.0.0",
-  "description": "part 3 of fullstack open",
+  "description": "making the phonebook frontend to have this backend eventually ",
   "license": "ISC",
-  "author": "",
+  "author": "Ahmad",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "dev": "node --watch index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "morgan": "^1.12.1"
   }
 }
