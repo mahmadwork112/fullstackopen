@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const morgan = require("morgan");
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(
     ":method :url :status :res[content-length] - :response-time ms :postData",
   ),
 );
+app.use(cors());
 
 let persons = [
   {
