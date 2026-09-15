@@ -43,9 +43,7 @@ let persons = [
   },
 ];
 
-app.get("/", (request, response) => {
-  response.send("<h1>Phonebook</h1>");
-});
+app.use(express.static("dist"));
 
 app.get("/info", (request, response) => {
   const total_people = persons.length;
