@@ -35,5 +35,5 @@ Note.find({}).then((result) => {
   result.forEach((note) => {
     console.log(note);
   });
-  moongose.connection.close();
+  mongoose.connection.close();
 });
