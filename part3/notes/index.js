@@ -9,7 +9,7 @@ const url = `mongodb+srv://mahmadsiddiqui111_db_user:${password}@cluster0.pcm2um
 mongoose.set("strictQuery", false);
 mongoose.connect(url, { family: 4 });
 
-const noteSchema = new mongoose.Scheme({
+const noteSchema = new mongoose.Schema({
   content: String,
   important: Boolean,
 });
