@@ -30,6 +30,7 @@ Person.find({}).then((result) => {
   result.forEach((person) => {
     console.log(`${person.name} ${person.number}`);
   });
+  mongoose.connection.close();
 });
 
 if (process.argv.length > 3) {
