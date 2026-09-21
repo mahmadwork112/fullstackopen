@@ -1,6 +1,20 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+
+const password = process.argv[2];
+const url = `mongodb+srv://mahmadsiddiqui111_db_user:${password}@cluster0.pcm2um9.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0```;
+
+mongoose.set("strictQuery", false);
+mongoose.connect(url, { family: 4 });
+
+const noteSchema = new mongoose.Scheme({
+  content: String,
+  important: Boolean,
+});
+
+const Note = mongoose.model("Note", noteSchema);
 
 const app = express();
 
@@ -34,7 +48,9 @@ app.use(
 app.use(express.static("dist"));
 
 app.get("/api/notes", (request, response) => {
-  response.json(notes);
+  Note.find({}).then((notes) => {
+    response.json(notes);
+  });
 });
 
 app.get("/api/notes/:id", (request, response) => {
