@@ -26,10 +26,11 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model("Person", personSchema);
 
-// const person = new Person({
-//   name: "Ahmad",
-//   number: "123456789",
-// });
+Person.find({}).then((result) => {
+  result.forEach((person) => {
+    console.log(`${person.name} ${person.number}`);
+  });
+});
 
 if (process.argv.length > 3) {
   const name = process.argv[3];
