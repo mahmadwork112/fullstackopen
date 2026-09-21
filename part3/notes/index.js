@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 
 const password = process.argv[2];
-const url = `mongodb+srv://mahmadsiddiqui111_db_user:${password}@cluster0.pcm2um9.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0```;
+const url = `mongodb+srv://mahmadsiddiqui111_db_user:${password}@cluster0.pcm2um9.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0`;
 
 mongoose.set("strictQuery", false);
 mongoose.connect(url, { family: 4 });
