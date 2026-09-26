@@ -5,9 +5,9 @@ if (process.argv.length > 3) {
   process.exit(1);
 }
 
-const password = process.argv[2];
-
-const url = `mongodb+srv://mahmadsiddiqui111_db_user:${password}@cluster0.pcm2um9.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0`;
+// const password = process.argv[2];
+//
+// const url = `mongodb+srv://mahmadsiddiqui111_db_user:${password}@cluster0.pcm2um9.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0`;
 
 mongoose.set("strictQuery", false);
 mongoose.connect(url, { family: 4 });
