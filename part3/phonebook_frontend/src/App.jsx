@@ -41,6 +41,7 @@ const App = () => {
             }, 2000);
           })
           .catch((error) => {
+            console.log(error.response.data.error);
             setShowMessage(
               `Information of ${existingPerson.name} has already been removed from the server`,
             );
