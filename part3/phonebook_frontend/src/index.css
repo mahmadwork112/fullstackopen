@@ -12,3 +12,13 @@ body {
   padding: 10px;
   margin-bottom: 10px;
 }
+
+.error {
+  color: red;
+  background: #e0e0e0;
+  font-size: 18px;
+  border: 2px solid red;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
