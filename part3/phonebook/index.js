@@ -37,32 +37,33 @@ app.use(express.static("dist"));
 
 app.get("/info", (request, response, next) => {
   const current_time = new Date().toString();
-  Person.countDocuments({}).then((count) => {
-    response.send(
-      `<p>phonebook has info for ${count} people</p> <p>${current_time}</p>`,
-    );
-  }).catch(error => next(error);
+  Person.countDocuments({})
+    .then((count) => {
+      response.send(
+        `<p>phonebook has info for ${count} people</p> <p>${current_time}</p>`,
+      );
+    })
+    .catch((error) => next(error));
 });
 
 app.get("/api/persons", (request, response, next) => {
-  Person.find({}).then((persons) => {
-    response.json(persons);
-  }).catch(error => next(error);
+  Person.find({})
+    .then((persons) => {
+      response.json(persons);
+    })
+    .catch((error) => next(error));
 });
 
 app.get("/api/persons/:id", (request, response, next) => {
-  Person.findById(request.params.id).then((person) => {
-    response.json(person);
-  }).catch(error => next(error);
-
-  // const id = request.params.id;
-  // const person = persons.find((p) => p.id === id);
-  //
-  // if (person) {
-  //   response.json(person);
-  // } else {
-  //   response.status(404).end();
-  // }
+  Person.findById(request.params.id)
+    .then((person) => {
+      if (person) {
+        response.json(person);
+      } else {
+        response.status(404).end();
+      }
+    })
+    .catch((error) => next(error));
 });
 
 app.delete("/api/persons/:id", (request, response, next) => {
@@ -71,11 +72,9 @@ app.delete("/api/persons/:id", (request, response, next) => {
       response.status(204).end();
     })
     .catch((error) => next(error));
-
-  response.status(204).end();
 });
 
-app.post("/api/persons", (request, response) => {
+app.post("/api/persons", (request, response, next) => {
   const body = request.body;
 
   if (!body.name || !body.number) {
@@ -89,9 +88,31 @@ app.post("/api/persons", (request, response) => {
     number: body.number,
   });
 
-  person.save().then((savedPerson) => {
-    response.json(person);
-  });
+  person
+    .save()
+    .then((savedPerson) => {
+      response.json(savedPerson);
+    })
+    .catch((error) => next(error));
+});
+
+app.put("/api/persons/:id", (request, response, next) => {
+  const { name, number } = request.body;
+
+  Person.findById(request.params.id)
+    .then((person) => {
+      if (!person) {
+        return response.status(404).end();
+      }
+
+      person.name = name;
+      person.number = number;
+
+      return person.save().then((savedPerson) => {
+        response.json(savedPerson);
+      });
+    })
+    .catch((error) => next(error));
 });
 
 app.use(errorHandler);
