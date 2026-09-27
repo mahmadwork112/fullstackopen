@@ -11,6 +11,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [filterName, setFilterName] = useState("");
   const [showMessage, setShowMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handlePersonAdd = (event) => {
     event.preventDefault();
@@ -41,13 +42,14 @@ const App = () => {
             }, 2000);
           })
           .catch((error) => {
-            console.log(error.response.data.error);
+            setErrorMessage(error.response.data.error);
             setShowMessage(
               `Information of ${existingPerson.name} has already been removed from the server`,
             );
 
             setTimeout(() => {
               setShowMessage(null);
+              setErrorMessage(null);
             }, 2000);
 
             setPersons(persons.filter((p) => p.id !== existingPerson.id));
@@ -108,7 +110,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
 
-      <Notification message={showMessage} />
+      <Notification message={showMessage} error={errorMessage} />
 
       <Filter filterName={filterName} handleFilterName={handleFilterName} />
 
