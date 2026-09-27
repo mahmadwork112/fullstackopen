@@ -35,25 +35,25 @@ app.use(cors());
 
 app.use(express.static("dist"));
 
-app.get("/info", (request, response) => {
+app.get("/info", (request, response, next) => {
   const current_time = new Date().toString();
   Person.countDocuments({}).then((count) => {
     response.send(
       `<p>phonebook has info for ${count} people</p> <p>${current_time}</p>`,
     );
-  });
+  }).catch(error => next(error);
 });
 
-app.get("/api/persons", (request, response) => {
+app.get("/api/persons", (request, response, next) => {
   Person.find({}).then((persons) => {
     response.json(persons);
-  });
+  }).catch(error => next(error);
 });
 
-app.get("/api/persons/:id", (request, response) => {
+app.get("/api/persons/:id", (request, response, next) => {
   Person.findById(request.params.id).then((person) => {
     response.json(person);
-  });
+  }).catch(error => next(error);
 
   // const id = request.params.id;
   // const person = persons.find((p) => p.id === id);
