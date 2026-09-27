@@ -74,7 +74,7 @@ app.delete("/api/notes/:id", (request, response) => {
 app.put("/api/notes/:id", (request, response, next) => {
   const { content, important } = request.body;
 
-  Note.findByID(request.params.id)
+  Note.findById(request.params.id)
     .then((note) => {
       if (!note) {
         return response.status(404).end();
