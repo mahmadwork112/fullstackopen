@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "node --watch index.js",
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
   },
   "dependencies": {
     "cors": "^2.8.6",
@@ -18,5 +19,11 @@
     "mongodb": "^7.6.0",
     "mongoose": "^9.10.1",
     "morgan": "^1.12.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0"
   }
 }
