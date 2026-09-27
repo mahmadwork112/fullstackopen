@@ -7,10 +7,10 @@ if (process.argv.length < 3) {
 }
 
 // saving the password
-const password = process.argv[2];
+// const password = process.argv[2];
 
 // url to the database
-const url = `mongodb+srv://AhmadSiddiqui:${password}@phonebookcluster.7tqbq90.mongodb.net/?appName=PhonebookCluster`;
+// const url = `mongodb+srv://AhmadSiddiqui:${password}@phonebookcluster.7tqbq90.mongodb.net/?appName=PhonebookCluster`;
 // const url = `mongodb+srv://mahmadsiddiqui111_db_user:${password}@phonebookcluster.7tqbq90.mongodb.net/?appName=PhonebookCluster`;
 
 mongoose.set("strictQuery", false);
