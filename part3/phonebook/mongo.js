@@ -33,6 +33,7 @@ Person.find({}).then((result) => {
   mongoose.connection.close();
 });
 
+// a method to save a person from the terminal directory.
 if (process.argv.length > 3) {
   const name = process.argv[3];
   const number = process.argv[4];

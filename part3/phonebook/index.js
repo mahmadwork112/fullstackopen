@@ -6,6 +6,17 @@ const Person = require("./models/person.js");
 
 const app = express();
 
+// every personal middleware will be here
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message);
+
+  if (error.name === "CastError") {
+    return response.status(400).send({ error: "malformatted id" });
+  }
+
+  next(error);
+};
+
 app.use(express.json());
 
 morgan.token("postData", (request) => {
@@ -22,37 +33,15 @@ app.use(
 );
 app.use(cors());
 
-let persons = [
-  {
-    id: "1",
-    name: "Arto Hellas",
-    number: "040-123456",
-  },
-  {
-    id: "2",
-    name: "Ada Lovelace",
-    number: "39-44-5323523",
-  },
-  {
-    id: "3",
-    name: "Dan Abramov",
-    number: "12-43-234345",
-  },
-  {
-    id: "4",
-    name: "Mary Poppendieck",
-    number: "39-23-6423122",
-  },
-];
-
 app.use(express.static("dist"));
 
 app.get("/info", (request, response) => {
-  const total_people = persons.length;
   const current_time = new Date().toString();
-  response.send(
-    `<p>phonebook has info for ${total_people} people</p> <p>${current_time}</p>`,
-  );
+  Person.countDocuments({}).then((count) => {
+    response.send(
+      `<p>phonebook has info for ${count} people</p> <p>${current_time}</p>`,
+    );
+  });
 });
 
 app.get("/api/persons", (request, response) => {
@@ -76,17 +65,12 @@ app.get("/api/persons/:id", (request, response) => {
   // }
 });
 
-app.delete("/api/persons/:id", (request, response) => {
+app.delete("/api/persons/:id", (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
     .then((result) => {
       response.status(204).end();
     })
-    .catch((error) => {
-      console.log("error occured: ", error.message);
-      response.status(400).send({ error: "malformatted id" });
-    });
-  // const id = request.params.id;
-  // persons = persons.filter((p) => p.id !== id);
+    .catch((error) => next(error));
 
   response.status(204).end();
 });
@@ -109,6 +93,8 @@ app.post("/api/persons", (request, response) => {
     response.json(person);
   });
 });
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
