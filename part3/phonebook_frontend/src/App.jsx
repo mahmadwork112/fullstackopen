@@ -62,15 +62,24 @@ const App = () => {
       number: newNumber,
     };
 
-    personService.create(newPersonObject).then((returnedPerson) => {
-      setPersons(persons.concat(returnedPerson));
-      setShowMessage(`added ${newName}`);
-      setNewName("");
-      setNewNumber("");
-      setTimeout(() => {
-        setShowMessage(null);
-      }, 2000);
-    });
+    personService
+      .create(newPersonObject)
+      .then((returnedPerson) => {
+        setPersons(persons.concat(returnedPerson));
+        setShowMessage(`added ${newName}`);
+        setNewName("");
+        setNewNumber("");
+        setTimeout(() => {
+          setShowMessage(null);
+        }, 2000);
+      })
+      .catch((error) => {
+        setErrorMessage(error.response.data.error);
+
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 2000);
+      });
   };
 
   const handleNameChange = (event) => {
