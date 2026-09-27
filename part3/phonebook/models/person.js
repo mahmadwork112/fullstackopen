@@ -19,20 +19,6 @@ const personSchema = new mongoose.Schema({
   number: String,
 });
 
-const Person = mongoose.model("Person", personSchema);
-
-const person = new Person({
-  name: "Ahmad Siddiqui",
-  number: "123456789",
-});
-
-person.save().then((result) => {
-  result.foreach((person) => {
-    console.log(person);
-  });
-  mongoose.connection.close();
-});
-
 personSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
