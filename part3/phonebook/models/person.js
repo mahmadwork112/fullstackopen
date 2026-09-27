@@ -27,7 +27,7 @@ const person = new Person({
 });
 
 person.save().then((result) => {
-  result.forEach((person) => {
+  result.foreach((person) => {
     console.log(person);
   });
   mongoose.connection.close();
