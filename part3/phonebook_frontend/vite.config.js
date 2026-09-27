@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://fullstackopen-production-93c8.up.railway.app/",
+        target: "http://localhost:3001/",
         changeOrigin: true,
       },
     },
