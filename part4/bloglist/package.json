@@ -1,0 +1,18 @@
+{
+  "name": "bloglist",
+  "version": "1.0.0",
+  "description": "exercise 4.1 requires this. ",
+  "license": "ISC",
+  "author": "Ahmad",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.11.1"
+  }
+}
