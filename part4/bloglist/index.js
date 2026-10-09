@@ -14,6 +14,7 @@ const Blog = mongoose.model("Blog", blogSchema);
 
 const mongoUrl =
   "mongodb+srv://mahmadsiddiqui111_db_user:WtWBkXRtAX2jTXmc@bloglist.ocmhcjs.mongodb.net/?appName=bloglist";
+
 mongoose.connect(mongoUrl, { family: 4 });
 
 app.use(express.json());
