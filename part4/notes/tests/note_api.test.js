@@ -68,3 +68,15 @@ test('note without content is not allowed ', async () => {
   const notesAtEnd = await helper.notesInDb()
   assert.strictEqual(notesAtEnd.length, helper.initialNotes.length)
 })
+
+test('a specific note can be viewed', async () => {
+  const notesAtStart = await helper.notesInDb()
+  const noteToView = notesAtStart[0]
+
+  const resultNote = await api
+    .get(`/api/notes/${noteToView.id}`)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  assert.deepStrictEqual(resultNote.body, noteToView)
+})
