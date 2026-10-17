@@ -28,6 +28,10 @@ describe('exercise 4.9 step2', () => {
   })
 })
 
+describe('exercise 4.10 step3', () => {
+  test.only('HTTP POST successfully creates a new blog post', async () => { })
+})
+
 after(async () => {
   await mongoose.connection.close()
 })
