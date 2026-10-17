@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const supertest = require('supertest')
 
 const app = require('../app')
-const helper = require('./test_helper')
+const helper = require('../utils/test_helper.test.js')
 const Note = require('../models/note')
 
 const api = supertest(app)
@@ -40,12 +40,15 @@ test('a specific note is within the returned notes', async () => {
   assert.strictEqual(response.body.length, 2)
 })
 
+// testing whether async/await works or not
 test('a valid note can be added ', async () => {
+  // creating a new dummy note
   const newNote = {
     content: 'async/await simplifies making async calls',
     important: true,
   }
 
+  // posting the note using the api
   await api
     .post('/api/notes')
     .send(newNote)
@@ -58,6 +61,7 @@ test('a valid note can be added ', async () => {
   assert(contents.includes('async/await simplifies making async calls'))
 })
 
+// invalid note creation test
 test('note without content is not allowed ', async () => {
   const newNote = {
     important: true,
@@ -69,6 +73,7 @@ test('note without content is not allowed ', async () => {
   assert.strictEqual(notesAtEnd.length, helper.initialNotes.length)
 })
 
+// test for a specific id note fetching
 test('a specific note can be viewed', async () => {
   const notesAtStart = await helper.notesInDb()
   const noteToView = notesAtStart[0]
@@ -79,4 +84,17 @@ test('a specific note can be viewed', async () => {
     .expect('Content-Type', /application\/json/)
 
   assert.deepStrictEqual(resultNote.body, noteToView)
+})
+
+// test for deleting a note
+test('a note can be deleted', async () => {
+  const notesAtStart = await helper.notesInDb()
+  const noteToDelete = notesAtStart[0]
+
+  await api.delete(`/api/notes/${noteToDelete}`).expect(204)
+
+  const notesAtEnd = await helper.notesInDbL()
+  const ids = notesAtEnd.map((n) => n.id)
+  assert(!ids.includes(noteToDelete.id))
+  assert.strictEqual(notesAtEnd.length, helper.initialNotes.length - 1)
 })

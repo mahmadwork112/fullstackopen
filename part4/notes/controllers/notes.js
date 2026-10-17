@@ -30,12 +30,14 @@ notesRouter.post('/', async (request, response) => {
   // error catching removed since await automatically sends errors if any arrive.
 })
 
-notesRouter.delete('/:id', (request, response, next) => {
-  Note.findByIdAndDelete(request.params.id)
-    .then(() => {
-      response.status(204).end()
-    })
-    .catch((error) => next(error))
+// finding a specific id note.
+notesRouter.delete('/:id', async (request, response) => {
+  const note = await Note.findByIdAndDelete(request.params.id)
+  if (note) {
+    response.json(note)
+  } else {
+    response.status(404).end()
+  }
 })
 
 notesRouter.put('/:id', (request, response, next) => {
