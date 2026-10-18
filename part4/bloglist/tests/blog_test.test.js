@@ -107,7 +107,7 @@ describe(' exercise 4.11 step 4', () => {
       .expect('Content-Type', /application\/json/)
 
     const blogs = await api.get('/api/blogs')
-    const likes = blogs.map((blog) => blog.likes)
+    const likes = blogs.body.map((blog) => blog.likes)
     console.log(likes)
   })
 })
