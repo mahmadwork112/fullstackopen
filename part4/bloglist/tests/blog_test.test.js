@@ -112,8 +112,23 @@ describe(' exercise 4.11 step 4', () => {
   })
 })
 
-describe(' exercise 4.11 step 4', () => {
-  test.only('creating new blogs via the /api/blogs endpoint')
+describe(' exercise 4.12 step 4', () => {
+  test.only('creating new blogs via the /api/blogs endpoint', async () => {
+    // dummy blog with missing title and url
+    const newBlog = {
+      author: 'testUser2',
+      likes: 100,
+    }
+
+    await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+
+    const blogs = await api.get('/api/blogs')
+    assert.strictEqual(blogs.body.length, initialBlogs.length)
+  })
 })
 
 after(async () => {
