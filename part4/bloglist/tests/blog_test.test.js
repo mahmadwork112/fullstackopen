@@ -2,9 +2,9 @@ const { test, after, describe, beforeEach } = require('node:test')
 const assert = require('node:assert')
 const supertest = require('supertest')
 const mongoose = require('mongoose')
-const app = require('../app')
-const Blog = require('../models/blog')
-const api = supertest(app)
+const app = require('../app') // used by the supertest
+const Blog = require('../models/blog') // used for beforeEach.(initialBlogs)
+const api = supertest(app) // used for the api connection
 
 // initial blogs
 const initialBlogs = [
@@ -59,7 +59,7 @@ describe('exercise 4.9 step2', () => {
 
     response.body.forEach((blog) => {
       assert.notStrictEqual(blog.id, undefined) // the task
-      assert.StrictEqual(blog._id, undefined) // extra check
+      assert.strictEqual(blog._id, undefined) // extra check
     })
   })
 })
@@ -88,6 +88,25 @@ describe('exercise 4.10 step3', () => {
     // const blogs = await api.get('/api/blogs')
     // const titles = blogs.body.map((blog) => blog.title)
     // assert(titles.includes('test blog'))
+  })
+})
+
+describe(' exercise 4.11 step 4', () => {
+  test('verifies whether the likes property is missing from the request', async () => {
+    // dummy blog with no likes
+    const newBlog = {
+      title: 'test blog2',
+      author: 'testUser2',
+      url: 'test_url2',
+    }
+
+    await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+    const blogs = await api.get('/api/blogs')
   })
 })
 
