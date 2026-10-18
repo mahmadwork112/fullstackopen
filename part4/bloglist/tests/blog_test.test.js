@@ -65,7 +65,7 @@ describe('exercise 4.9 step2', () => {
 })
 
 describe('exercise 4.10 step3', () => {
-  test.only('HTTP POST successfully creates a new blog post', async () => {
+  test('HTTP POST successfully creates a new blog post', async () => {
     // dummy blog
     const newBlog = {
       title: 'test blog',
@@ -92,7 +92,7 @@ describe('exercise 4.10 step3', () => {
 })
 
 describe(' exercise 4.11 step 4', () => {
-  test('verifies whether the likes property is missing from the request', async () => {
+  test.only('verifies whether the likes property is missing from the request', async () => {
     // dummy blog with no likes
     const newBlog = {
       title: 'test blog2',
@@ -107,6 +107,8 @@ describe(' exercise 4.11 step 4', () => {
       .expect('Content-Type', /application\/json/)
 
     const blogs = await api.get('/api/blogs')
+    const likes = blogs.map((blog) => blog.likes)
+    console.log(likes)
   })
 })
 
