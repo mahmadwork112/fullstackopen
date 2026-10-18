@@ -1,6 +1,8 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
 
+// TODO: convert these to async/await
+
 blogsRouter.get('/', (request, response) => {
   Blog.find({}).then((blogs) => response.json(blogs))
 })
@@ -28,7 +30,7 @@ blogsRouter.post('/', (request, response, next) => {
 
   blog
     .save()
-    .then((savedBlog) => response.json(savedBlog))
+    .then((savedBlog) => response.status(201).json(savedBlog))
     .catch((error) => next(error))
 })
 
