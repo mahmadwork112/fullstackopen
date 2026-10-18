@@ -108,7 +108,7 @@ describe(' exercise 4.11 step 4', () => {
 
     const blogs = await api.get('/api/blogs')
     const likes = blogs.body.map((blog) => blog.likes)
-    console.log(likes)
+    assert.StrictEqual(likes, 0)
   })
 })
 
