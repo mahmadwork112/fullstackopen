@@ -92,7 +92,7 @@ describe('exercise 4.10 step3', () => {
 })
 
 describe(' exercise 4.11 step 4', () => {
-  test.only('verifies whether the likes property is missing from the request', async () => {
+  test('verifies whether the likes property is missing from the request', async () => {
     // dummy blog with no likes
     const newBlog = {
       title: 'test blog2',
@@ -110,6 +110,10 @@ describe(' exercise 4.11 step 4', () => {
     const likes = blogs.body.map((blog) => blog.likes)
     assert.StrictEqual(likes, 0)
   })
+})
+
+describe(' exercise 4.11 step 4', () => {
+  test.only('creating new blogs via the /api/blogs endpoint')
 })
 
 after(async () => {
