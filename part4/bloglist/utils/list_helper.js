@@ -25,7 +25,7 @@ const favoriteBlog = (blogs) => {
     author: highest.author,
     url: highest.url,
     likes: highest.likes,
-    __V: highest.__v,
+    __v: highest.__v,
   }
 }
 
