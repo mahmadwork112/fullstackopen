@@ -15,11 +15,18 @@ const totalLikes = (blogs) => {
 const favoriteBlog = (blogs) => {
   if (blogs.length === 0) return null
 
-  let highestLike = blogs.reduce((max, blog) => {
+  let highest = blogs.reduce((max, blog) => {
     return blog.likes > max.likes ? blog : max
   })
 
-  return highestLike
+  return {
+    _id: highest._id,
+    title: highest.title,
+    author: highest.author,
+    url: highest.url,
+    likes: highest.likes,
+    __V: highest.__v,
+  }
 }
 
 module.exports = { dummy, totalLikes, favoriteBlog }
