@@ -100,15 +100,13 @@ describe(' exercise 4.11 step 4', () => {
       url: 'test_url2',
     }
 
-    await api
+    const response = await api
       .post('/api/blogs')
       .send(newBlog)
       .expect(201)
       .expect('Content-Type', /application\/json/)
 
-    const blogs = await api.get('/api/blogs')
-    const likes = blogs.body.map((blog) => blog.likes)
-    assert.StrictEqual(likes, 0)
+    assert.strictEqual(response.body.likes, 0)
   })
 })
 
