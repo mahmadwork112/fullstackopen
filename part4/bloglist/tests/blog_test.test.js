@@ -129,7 +129,7 @@ describe(' exercise 4.12 step 4', () => {
   })
 })
 
-describe(' exercise 4.13, blogposts expansions', () => {
+describe(' exercise 4.13, blogposts expansions 1', () => {
   test.only('testing the functionality to delete blog posts', async () => {
     // dummy blog to be deleted
     const dummyBlog = {
@@ -147,6 +147,40 @@ describe(' exercise 4.13, blogposts expansions', () => {
 
     const createdBlog = response.body
     await api.delete(`/api/blogs/${createdBlog.id}`).expect(204)
+  })
+})
+
+describe(' exercise 4.14, blogposts expansions 2', () => {
+  test.only('updating a note ', async () => {
+    // we will add a HTTP POST first and then HTTP PUT that post and then
+    // do another HTTP GET to verify the change
+    const dummyBlog = {
+      title: 'To be Changed',
+      author: 'testUser',
+      url: 'test_url',
+      likes: 150,
+    }
+
+    const response = await api
+      .post('/api/blogs')
+      .send(dummyBlog)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+    const createdBlog = response.body
+
+    // updating the posted blog
+    const updatedBlog = {
+      ...dummyBlog,
+      title: 'Changed',
+      likes: 100,
+    }
+
+    await api
+      .put(`/api/blogs/${createdBlog.id}`)
+      .send(updatedBlog)
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
   })
 })
 
