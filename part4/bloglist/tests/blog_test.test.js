@@ -129,6 +129,27 @@ describe(' exercise 4.12 step 4', () => {
   })
 })
 
+describe(' exercise 4.13, blogposts expansions', () => {
+  test.only('testing the functionality to delete blog posts', async () => {
+    // dummy blog to be deleted
+    const dummyBlog = {
+      title: 'test blog',
+      author: 'testUser',
+      url: 'test_url',
+      likes: 150,
+    }
+
+    const response = await api
+      .post('/api/blogs')
+      .send(dummyBlog)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+    const createdBlog = response.body
+    await api.delete(`/api/blogs/${createdBlog.id}`).expect(204)
+  })
+})
+
 after(async () => {
   await mongoose.connection.close()
 })
