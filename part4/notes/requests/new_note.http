@@ -1,0 +1,13 @@
+### find the userId 
+GET http://localhost:3001/api/users
+
+### create a new note
+POST http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+  "content": "User id of the note creator is at the start sent along the request.",
+  "important": true,
+  "userId": "6adb3b54881d19af6f1da6aa"
+}
+
