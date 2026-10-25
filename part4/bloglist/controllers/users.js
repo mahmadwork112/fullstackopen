@@ -30,6 +30,8 @@ usersRouter.post('/', async (request, response) => {
     passwordHash,
   })
 
+  // will automatically check upon the user.save() whether the user is
+  // correct or not.
   const savedUser = await user.save()
   response.status(201).json(savedUser)
 })
