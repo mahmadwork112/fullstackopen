@@ -1,0 +1,9 @@
+### Creating a new user (verification this works)
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "UnKnWoN",
+  "name": "Ahmad",
+  "password": "ThisIsPassword"
+}

@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   },
   name: String,
   passwordHash: String,
+  // takes the blogs automatically ,we dont have to provide them.
   blogs: [
     {
       type: mongoose.Schema.Types.ObjectId,
