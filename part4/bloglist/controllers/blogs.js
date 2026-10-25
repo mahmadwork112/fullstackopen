@@ -64,7 +64,7 @@ blogsRouter.post('/', async (request, response) => {
   const user = request.user
 
   if (!user) {
-    return response.status(404).json({ error: 'token invalid or missing' })
+    return response.status(401).json({ error: 'token invalid or missing' })
   }
 
   const blog = new Blog({
