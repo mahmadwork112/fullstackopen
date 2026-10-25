@@ -1,0 +1,10 @@
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkR1bW15VXNlciIsImlkIjoiNmFkZTFmNjhjOThhY2EzNDE3ZjBlY2I2IiwiaWF0IjoxNzkyOTQyMDk0LCJleHAiOjE3OTI5NDU2OTR9.EYtUx2L-1BVdNhBTwQzgq6rPTt6U1BV1OCukaR_D5-k
+
+{
+  "title": "Understanding JWT",
+  "author": "Maheen",
+  "url": "http://example.com"
+}

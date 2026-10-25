@@ -7,3 +7,13 @@ Content-Type: application/json
   "name": "Ahmad",
   "password": "ThisIsPassword"
 }
+
+### Creating a new user (verification this works)
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "DummyUser",
+  "name": "dummy",
+  "password": "dummy123"
+}

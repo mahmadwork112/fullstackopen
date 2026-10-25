@@ -74,7 +74,7 @@ blogsRouter.post('/', async (request, response) => {
   })
 
   const savedBlog = await blog.save()
-  user.blogs = user.blogs.concant(savedBlog._id)
+  user.blogs = user.blogs.concat(savedBlog._id)
   response.status(201).json(savedBlog)
   // await will automatically catch errors aswell.
 })
