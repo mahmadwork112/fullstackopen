@@ -1,3 +1,7 @@
+### getting the user id  
+GET http://localhost:3003/api/users
+
+###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
@@ -5,5 +9,6 @@ Content-Type: application/json
   "title": "My First Blog",
   "author": "Ahmad",
   "url": "something.somethingsomething",
-  "likes": 200
+  "likes": 200,
+  "user": "6adcca1685fe273040da76b9"
 }
