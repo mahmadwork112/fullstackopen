@@ -5,9 +5,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    minlength: 3,
   },
   name: String,
-  passwordHash: String,
+  passwordHash: {
+    type: String,
+    required: true,
+    minlength: 3,
+  },
   // takes the blogs automatically ,we dont have to provide them.
   blogs: [
     {
